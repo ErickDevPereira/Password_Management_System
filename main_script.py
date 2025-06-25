@@ -1187,6 +1187,7 @@ class Option_Window(Window):
         
 if __name__ == '__main__':
     if SQL_CRUD.connected():
+        SQL_CRUD.create()
         login = Login_Window(args.window_size['Login'][0], args.window_size['Login'][1], 'Ico_Files/for_test.ico', 'Password Management System ErickDev',
                              font_size_title_label = 60,
                              font_size_otherwise_label = 30,

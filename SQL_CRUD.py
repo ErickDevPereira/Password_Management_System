@@ -22,6 +22,36 @@ def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', d
     else:
         return True
 
+#Creating tables
+def create():
+    cursor = mydb.cursor()
+    sql1 = """CREATE TABLE IF NOT EXISTS Users (
+    Id_user INT UNSIGNED AUTO_INCREMENT,
+    Username VARCHAR(255) NOT NULL UNIQUE,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Phone_number VARCHAR(255) NOT NULL,
+    CHECK( EMAIL LIKE '_%@%_.com' ),
+    PRIMARY KEY (Id_user)
+    )"""
+    cursor.execute(sql1)
+    cursor.close()
+    cursor = mydb.cursor()
+    sql2 = """CREATE TABLE IF NOT EXISTS PW_Data (
+    Id_record INT UNSIGNED AUTO_INCREMENT,
+    Platform VARCHAR(255) NOT NULL,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Id_user INT UNSIGNED, /*id from the logged user that is putting data into the table.*/
+    UNIQUE ( Platform, Username, Id_user ), /*Can't reapeat username and platform for the same user*/
+    FOREIGN KEY (Id_user) REFERENCES Users(Id_user), /*This FK constraint is important to guarantee data consistency.*/
+    PRIMARY KEY (Id_record),
+    CHECK ( Platform <> "" AND Username <> "" AND Password <> "")
+    )
+    """
+    cursor.execute(sql2)
+    cursor.close()
+
 #function that returns the list of names of the users
 def all_users_name():
 
