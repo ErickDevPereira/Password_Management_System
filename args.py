@@ -1,8 +1,8 @@
 '''
 This module is important because it gives direct access to some arguments that
-are in use inside the main_script.py script, unleashing a large organization level.
+are being used inside the main_script.py script, unleashing a large organization level.
 '''
-#Dictionary that defines the position of the labels( The tuple that defines the position is of the format (x_%, y_%)):
+#Dictionary that defines the position of the labels( The tuple that defines the position has the format (x_%, y_%)):
 pos = {
     'Login' : {
         'title' : (0.5, 0.1),
