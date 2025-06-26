@@ -20,7 +20,7 @@ def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', d
         return False
     else:
         cursor = mydb.cursor()
-        cursor.execute(f'CREATE DATABASE IF NOT EXISTS DATABASE {db}')
+        cursor.execute(f'CREATE DATABASE IF NOT EXISTS {db}')
         cursor.close()
         mydb.close()
     try:
