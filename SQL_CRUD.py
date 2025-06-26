@@ -6,7 +6,8 @@ def sha_output(msg):
     byte_msg = msg.encode()
     crypto_hex_msg = sha256(byte_msg).hexdigest()
     return crypto_hex_msg
-    
+
+print(1)
 #Creating the connection to the server
 def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', db = 'safe_PW'):
     global mydb #Very important to consider the connection as a global scope variable.
