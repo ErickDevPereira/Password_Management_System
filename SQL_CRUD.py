@@ -14,6 +14,19 @@ def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', d
         mydb = mysql.connector.connect(
             host = host_adress,
             user = username,
+            password = pw
+        )
+    except:
+        return False
+    else:
+        cursor = mydb.cursor()
+        cursor.execute(f'CREATE DATABASE IF NOT EXISTS DATABASE {db}')
+        cursor.close()
+        mydb.close()
+    try:
+        mydb = mysql.connector.connect(
+            host = host_adress,
+            user = username,
             password = pw,
             database = db
         )
