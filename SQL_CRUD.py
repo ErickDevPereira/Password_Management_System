@@ -64,6 +64,17 @@ def create():
     """
     cursor.execute(sql2)
     cursor.close()
+
+#function that returns the list of names of the users
+def all_users_name():
+
+    cursor = mydb.cursor()
+    sql = 'SELECT Username FROM Users'
+    cursor.execute(sql)
+    registers = cursor.fetchall()
+    names = [user[0] for user in registers]
+    cursor.close()
+    return names
     
 #Function that inserts records in the Users table
 def insert_user(username, pw, email, phone):
