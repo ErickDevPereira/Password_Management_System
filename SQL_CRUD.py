@@ -6,9 +6,23 @@ def sha_output(msg):
     byte_msg = msg.encode()
     crypto_hex_msg = sha256(byte_msg).hexdigest()
     return crypto_hex_msg
+
 #Creating the connection to the server
 def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', db = 'safe_PW'):
     global mydb #Very important to consider the connection as a global scope variable.
+    try:
+        mydb = mysql.connector.connect(
+            host = host_adress,
+            user = username,
+            password = pw
+        )
+    except:
+        return False
+    else:
+        cursor = mydb.cursor()
+        cursor.execute(f'CREATE DATABASE IF NOT EXISTS {db}')
+        cursor.close()
+        mydb.close()
     try:
         mydb = mysql.connector.connect(
             host = host_adress,
@@ -21,16 +35,35 @@ def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', d
     else:
         return True
 
-#function that returns the list of names of the users
-def all_users_name():
-
+#Creating tables
+def create():
     cursor = mydb.cursor()
-    sql = 'SELECT Username FROM Users'
-    cursor.execute(sql)
-    registers = cursor.fetchall()
-    names = [user[0] for user in registers]
+    sql1 = """CREATE TABLE IF NOT EXISTS Users (
+    Id_user INT UNSIGNED AUTO_INCREMENT,
+    Username VARCHAR(255) NOT NULL UNIQUE,
+    Password VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Phone_number VARCHAR(255) NOT NULL,
+    CHECK( EMAIL LIKE '_%@%_.com' ),
+    PRIMARY KEY (Id_user)
+    )"""
+    cursor.execute(sql1)
     cursor.close()
-    return names
+    cursor = mydb.cursor()
+    sql2 = """CREATE TABLE IF NOT EXISTS PW_Data (
+    Id_record INT UNSIGNED AUTO_INCREMENT,
+    Platform VARCHAR(255) NOT NULL,
+    Username VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Id_user INT UNSIGNED, /*id from the logged user that is putting data into the table.*/
+    UNIQUE ( Platform, Username, Id_user ), /*Can't reapeat username and platform for the same user*/
+    FOREIGN KEY (Id_user) REFERENCES Users(Id_user), /*This FK constraint is important to guarantee data consistency.*/
+    PRIMARY KEY (Id_record),
+    CHECK ( Platform <> "" AND Username <> "" AND Password <> "")
+    )
+    """
+    cursor.execute(sql2)
+    cursor.close()
     
 #Function that inserts records in the Users table
 def insert_user(username, pw, email, phone):
