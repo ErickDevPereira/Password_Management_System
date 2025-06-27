@@ -8,7 +8,7 @@ def sha_output(msg):
     return crypto_hex_msg
 
 #Creating the connection to the server
-def connected(host_adress = 'localhost', username = 'root', pw = 'Ichigo007.', db = 'safe_PW'):
+def connected(host_adress = 'localhost', username = 'root', pw = '<Your MySQL Password goes here>', db = 'safe_PW'):
     global mydb #Very important to consider the connection as a global scope variable.
     try:
         mydb = mysql.connector.connect(
