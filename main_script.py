@@ -7,13 +7,12 @@ import args
 
 class Entry:
 
-    def __init__(self, window, width, height, placeholder,
+    def __init__(self, window, width, height,
                  posx, posy, text_color,
                  font_size, font_style, border_width, border_color, background_color):
         self.width = width
         self.background_color = background_color
         self.height = height
-        self.placeholder = placeholder
         self.posx = posx
         self.posy = posy
         self.text_color = text_color
@@ -26,7 +25,6 @@ class Entry:
                                 width = self.width,
                                 height = self.height,
                                 text_color = self.text_color,
-                                placeholder_text = self.placeholder,
                                 font = (self.font_style, self.font_size),
                                 border_width = self.border_width,
                                 border_color = self.border_color)
@@ -111,7 +109,6 @@ class Login_Window(Window):
                          font_style = kwargs['font_style_label'])
         #Defining the username entry
         self.entry_user = Entry(window = self.root,
-                           placeholder = kwargs['entry_user_placeholder'],
                            posx = kwargs['entry_user_posx'],
                            posy = kwargs['entry_user_posy'],
                            text_color = kwargs['color_entry'],
@@ -132,7 +129,6 @@ class Login_Window(Window):
                          font_style = kwargs['font_style_label'])
         #Defining the password entry
         self.entry_password = Entry(window = self.root,
-                           placeholder = kwargs['entry_user_placeholder'],
                            posx = kwargs['entry_password_posx'],
                            posy = kwargs['entry_password_posy'],
                            text_color = kwargs['color_entry'],
@@ -220,7 +216,6 @@ class Login_Window(Window):
                                         posx_user = args.pos['Register']['user_label'][0],
                                         posy_user = args.pos['Register']['user_label'][1],
                                         font_size_otherwise_label = 30,
-                                        entry_user_placeholder = 'Type the username here',
                                         entry_user_posx = args.pos['Register']['user_entry'][0],
                                         entry_user_posy = args.pos['Register']['user_entry'][1],
                                         color_entry = 'white', font_size_entry = 20,
@@ -285,7 +280,6 @@ class Store_Window(Login_Window):
                          text_user = kwargs['text_user'],
                          posx_user = kwargs['posx_user'],
                          posy_user = kwargs['posy_user'],
-                         entry_user_placeholder = kwargs['entry_user_placeholder'],
                          entry_user_posx = kwargs['entry_user_posx'],
                          entry_user_posy = kwargs['entry_user_posy'],
                          color_entry = kwargs['color_entry'],
@@ -340,7 +334,6 @@ class Store_Window(Login_Window):
                          font_style = kwargs['font_style_label'])
         #Defining the entry platfomr
         self.entry_platform = Entry(window = self.root,
-                           placeholder = kwargs['entry_user_placeholder'],
                            posx = kwargs['entry_plat_posx'],
                            posy = kwargs['entry_plat_posy'],
                            text_color = kwargs['color_entry'],
@@ -386,7 +379,6 @@ class Register_Window(Window):
                          font_size = kwargs['font_size_otherwise_label'],
                          font_style = kwargs['font_style_label'])
         self.entry_user = Entry(window = self.root,
-                           placeholder = kwargs['entry_user_placeholder'],
                            posx = kwargs['entry_user_posx'],
                            posy = kwargs['entry_user_posy'],
                            text_color = kwargs['color_entry'],
@@ -995,7 +987,6 @@ class Option_Window(Window):
                                          color_label = args.pattern_style['main_color'],
                                          text_user = 'Username', posx_user = args.pos['Store']['user_label'][0],
                                          posy_user = args.pos['Store']['user_label'][1],
-                                         entry_user_placeholder = 'Type your username here',
                                          entry_user_posx = args.pos['Store']['user_entry'][0],
                                          entry_user_posy = args.pos['Store']['user_entry'][1],
                                          color_entry = 'white',
@@ -1199,7 +1190,6 @@ if __name__ == '__main__':
                              text_user = 'Username',
                              posx_user = args.pos['Login']['user_label'][0],
                              posy_user = args.pos['Login']['user_label'][1],
-                             entry_user_placeholder = 'Type your username here',
                              entry_user_posx = args.pos['Login']['user_entry'][0],
                              entry_user_posy = args.pos['Login']['user_entry'][1],
                              color_entry = 'white',
